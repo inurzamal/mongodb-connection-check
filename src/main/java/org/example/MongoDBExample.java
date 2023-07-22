@@ -9,13 +9,12 @@ import java.util.logging.Logger;
 public class MongoDBExample {
     public static void main(String[] args) {
         // MongoDB connection parameters
-        String host = "localhost";
-        int port = 27017; // Default MongoDB port
+        String hostPort = "localhost:27017";
         String databaseName = "mydb";
         String collectionName = "mycollection";
 
         // Set up the MongoDB client
-        MongoClient mongoClient = MongoClients.create("mongodb://" + host + ":" + port);
+        MongoClient mongoClient = MongoClients.create("mongodb://" + hostPort);
 
         try {
             // Get the database
@@ -25,8 +24,8 @@ public class MongoDBExample {
             MongoCollection<Document> collection = database.getCollection(collectionName);
 
             // Insert a document (optional, you can skip this)
-//            Document document = new Document("name", "John Doe").append("age", 30);
-//            collection.insertOne(document);
+            Document document = new Document("name", "John Doe").append("age", 35);
+            collection.insertOne(document);
 
             // Query and print all documents in the collection
             FindIterable<Document> documents = collection.find();
